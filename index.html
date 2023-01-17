@@ -27,6 +27,8 @@
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <!-- =======================================================
   * Template Name: Personal - v4.10.0
   * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
@@ -621,7 +623,7 @@
         </div>
       </div>
 
-      <form id="gform" action="https://script.google.com/macros/s/AKfycbw9aa2PiNOVk0xNqtphRi0hQeUJZt6sIH5vd7wmdM7ItKGoPj_jfTB0siNyMjQwB5vMGw/exec" method="POST" role="form" class="php-email-form mt-4">
+      <form id="submit-form" action="" method="POST" role="form" class="php-email-form mt-4">
         <div class="row">
           <div class="col-md-6 form-group">
             <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -647,7 +649,25 @@
     </div>
   </section><!-- End Contact Section -->
 
-  
+  <script>
+    $("#submit-form").submit((e)=>{
+        e.preventDefault()
+        $.ajax({
+            url:"https://script.google.com/macros/s/AKfycbw9aa2PiNOVk0xNqtphRi0hQeUJZt6sIH5vd7wmdM7ItKGoPj_jfTB0siNyMjQwB5vMGw/exec",
+            data:$("#submit-form").serialize(),
+            method:"post",
+            success:function (response){
+                alert("Form submitted successfully")
+                window.location.reload()
+                //window.location.href="https://google.com"
+            },
+            error:function (err){
+                alert("Something Error")
+
+            }
+        })
+    })
+</script>
 
   <!-- Vendor JS Files -->
   <script src="vendor/purecounter/purecounter_vanilla.js"></script>
